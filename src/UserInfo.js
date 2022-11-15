@@ -1,8 +1,8 @@
-import { useUser } from "./useUser";
-export const UserInfo = ({userId}) => {
-	const user = useUser(userId);
-	const { name, age, hairColor, hobbies } = user || {};
+import { useResource } from "./useResource";
 
+export const UserInfo = ({userId}) => {
+	const user = useResource(`users/${userId}`);
+	const { name, age, hairColor, hobbies } = user || {};
 	return user ? (
 		<>
 		<h3>{name}</h3>
