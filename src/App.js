@@ -1,5 +1,5 @@
-import UncontrolledOnBoardingFlow from './UncontrolledOnBoardingFlow';
-
+import ControlledOnboardingFlow from './ControlledOnboardingFlow';
+import { useState } from 'react';
 const StepOne = ({ToNext})=>
 <>
 	<h1>Step - 1</h1>
@@ -19,15 +19,25 @@ const StepThree = ({ToNext})=>
 
 function App() {
 
+	const [onboardingData,setOnboardingData] = useState({})
+  const [currentIndex,setCurrentIndex] = useState(0);
+
+  const ToNext= stepData =>{
+		setOnboardingData({...onboardingData,...stepData});
+		setCurrentIndex(prev=>prev+1);
+  }
+
+
+
 	return (
-			<UncontrolledOnBoardingFlow onFinish={data =>{
-				console.log(data);
-				alert('Finshed all step')
-			}}>
+			<ControlledOnboardingFlow 
+				currentIndex={currentIndex}
+				onNext={ToNext}
+			>
 				<StepOne />
 				<StepTwo />
 				<StepThree />
-			</UncontrolledOnBoardingFlow>
+			</ControlledOnboardingFlow>
 	);
 }
 
