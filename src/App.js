@@ -1,24 +1,33 @@
-import { useState } from 'react';
-import { UncontrolledForm } from './UncontrolledForm';
-import { ControlledForm } from './ControlledForm';
-import { UncontrolledModal } from './UncontrolledModal';
-import { ControlledModal } from './ControlledModal';
+import UncontrolledOnBoardingFlow from './UncontrolledOnBoardingFlow';
+
+const StepOne = ({ToNext})=>
+<>
+	<h1>Step - 1</h1>
+	<button onClick={()=>ToNext({name:'Tom'})}>Next</button>
+</>
+const StepTwo = ({ToNext})=>
+<>
+	<h1>Step - 2</h1>
+	<button onClick={()=>ToNext({age:32})}>Next</button>
+</>
+const StepThree = ({ToNext})=>
+<>
+	<h1>Step - 3</h1>
+	<button onClick={()=>ToNext({hairColor:'Black'})}>Next</button>
+</>
+
 
 function App() {
-	const [shouldShowModal, setShouldShowModal] = useState(false);
 
 	return (
-		<>
-		<ControlledModal
-			shouldShow={shouldShowModal}
-			onRequestClose={() => setShouldShowModal(false)}
-		>
-			<h1>Hello!</h1>
-		</ControlledModal>
-		<button onClick={() => setShouldShowModal(!shouldShowModal)}>
-			{shouldShowModal ? 'Hide Modal' : 'Show Modal'}
-		</button>
-		</>
+			<UncontrolledOnBoardingFlow onFinish={data =>{
+				console.log(data);
+				alert('Finshed all step')
+			}}>
+				<StepOne />
+				<StepTwo />
+				<StepThree />
+			</UncontrolledOnBoardingFlow>
 	);
 }
 
