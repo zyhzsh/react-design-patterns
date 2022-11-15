@@ -1,7 +1,4 @@
 import { useState } from 'react';
-import { UncontrolledForm } from './UncontrolledForm';
-import { ControlledForm } from './ControlledForm';
-import { UncontrolledModal } from './UncontrolledModal';
 import { ControlledModal } from './ControlledModal';
 
 function App() {
